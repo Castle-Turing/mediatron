@@ -1,0 +1,10 @@
+# docs/tasks — numbered briefs, and the queue a harness reads
+
+Numbered briefs (0001-, 0002-, ...), each the spec and reasoning for
+one piece of work, committed on the branch that implements it. The
+top level is the open-work queue: header of Key: value lines, blank
+line, then the brief. Header keys and their rules are AGENTS.md's
+"Tasks and the queue" section — including the parser-ordering fact
+(single-line keys above any wrapped value). done/ holds completed
+briefs once their work merges; numbers are allocated by checking
+this directory including done/ at write time.
