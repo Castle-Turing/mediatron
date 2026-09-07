@@ -97,9 +97,16 @@ readings written down beforehand, none were defaulted.
 
 ### Position [m1-now] — patched per PR
 
-- Scaffolding: this founding commit.
-- Renderer: not ported (task 0001; the source system exists in the
-  founding session's tooling and lands with the task).
-- qutebrowser wrapper and link policy: not built (task 0001).
-- Outcome log: header row only; first data row lands with task
-  0001's completion.
+- Scaffolding: founding commit; elicitation PR #1 merged 2026-09-06
+  (records [m1-links], [m1-provenance], [m1-seam]; pin flake.lock).
+- Renderer: implemented as `src/mediatron_render.py` on task 0001's
+  branch — the md2page.py port plus front-matter title/eyebrow and
+  relative-`.md` link rendering (PR #2, awaiting review).
+- qutebrowser wrapper and link policy: implemented as `src/mediatron`
+  with a generated reading profile (chromeless, `F` hands external
+  links to xdg-open via a shipped userscript) and the castle-roots
+  allowlist in `~/.config/mediatron/config` (example committed; PR
+  #2, awaiting review). Real-display behavior unverified until the
+  resident's falsifier run.
+- Outcome log: first data row appended with task 0001's completion
+  (PR #2).

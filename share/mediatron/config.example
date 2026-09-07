@@ -1,0 +1,11 @@
+# Castle document roots for mediatron.
+#
+# One URL prefix per line; lines starting with '#' are comments.
+# A link whose URL starts with any listed prefix is treated as internal
+# (it opens in the mediatron window). Everything else over http(s) is
+# external and opens in the default browser when followed with `F`.
+#
+# Copy this file to ~/.config/mediatron/config (or set MEDIATRON_CONFIG)
+# and edit the prefixes to name where your castle serves its documents.
+# Your private roots belong here, in your private configuration, never in
+# the repository.

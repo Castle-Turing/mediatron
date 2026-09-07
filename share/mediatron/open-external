@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# mediatron userscript: open a hinted link in the default browser.
+# qutebrowser passes the hinted URL as the first argument when a hint
+# is followed with `hint links userscript` (bound to `F` by mediatron's
+# generated reading profile).
+url="$1"
+if [ -n "$url" ]; then
+    exec xdg-open "$url"
+fi
+exit 1
