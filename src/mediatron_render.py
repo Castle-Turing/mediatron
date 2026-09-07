@@ -106,13 +106,20 @@ def inline(s, roots):
 
 
 def _tag_external(s, roots):
+    """Rewrite external http(s) links to the mediatron-external: scheme.
+
+    qutebrowser's unknown-scheme policy then hands the URL to the OS on
+    any activation (click, hint, Enter), where mediatron's registered
+    per-user handler strips the prefix and xdg-opens the real URL
+    ([m1-links], and see webenginesettings in qutebrowser 3.7.0)."""
     def _one(m):
         href = m.group(1)
         external = href.startswith(("http://", "https://")) and not any(
             href.startswith(r) for r in roots
         )
-        cls = ' class="external"' if external else ""
-        return f'<a href="{href}"{cls}>'
+        if external:
+            href = "mediatron-external:" + href
+        return f'<a href="{href}">'
     return re.sub(r'<a href="([^"]+)">', _one, s)
 
 

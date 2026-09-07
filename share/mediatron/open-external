@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
-# mediatron userscript: open a hinted link in the default browser.
-# qutebrowser passes the hinted URL as the first argument when a hint
-# is followed with `hint links userscript` (bound to `F` by mediatron's
-# generated reading profile).
+# mediatron external-link handler: turn a mediatron-external: URL into a
+# default-browser open. Registered per-user by the mediatron wrapper as
+# the handler for x-scheme-handler/mediatron-external; the OS resolves it
+# whenever qutebrowser navigates to a mediatron-external: link.
 url="$1"
+case "$url" in
+    mediatron-external:*) url="${url#mediatron-external:}" ;;
+esac
 if [ -n "$url" ]; then
     exec xdg-open "$url"
 fi

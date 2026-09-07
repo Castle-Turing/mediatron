@@ -26,8 +26,12 @@ Milestone 1 is the first buildable slice (task 0001):
   links to other `.md` documents, which are rendered on the spot) stay
   in the window. Links to http(s) URLs matching a prefix in your
   castle-roots allowlist also stay in the window; every other http(s)
-  link is external — follow it with `F` and it opens in your default
-  browser.
+  link is external and opens in your default browser however you
+  follow it: the renderer rewrites external hrefs to a
+  `mediatron-external:` scheme, and the wrapper registers a per-user
+  handler (a desktop entry under `~/.local/share/applications` plus a
+  `mimeapps.list` entry) that xdg-opens the real URL. Registration
+  happens on first run and is idempotent.
 
 qutebrowser is the bought engine: Mediatron supplies the renderer, the
 link policy, and the house style.
@@ -40,8 +44,8 @@ nix run .#mediatron-render -- path/to/file.md
 ```
 
 The window opens with the page rendered. `j`/`k` scroll; `f` hints
-links (internal ones navigate in the window, `F` hands external ones
-to `xdg-open`); `q` or `ZZ` quits.
+links (internal ones navigate in the window, external ones leave it);
+`q` or `ZZ` quits.
 
 ### Configuration
 

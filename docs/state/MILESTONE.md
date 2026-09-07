@@ -100,13 +100,18 @@ readings written down beforehand, none were defaulted.
 - Scaffolding: founding commit; elicitation PR #1 merged 2026-09-06
   (records [m1-links], [m1-provenance], [m1-seam]; pin flake.lock).
 - Renderer: implemented as `src/mediatron_render.py` on task 0001's
-  branch — the md2page.py port plus front-matter title/eyebrow and
-  relative-`.md` link rendering (PR #2, awaiting review).
+  branch (PR #2, awaiting merge) — the md2page.py port plus
+  front-matter title/eyebrow and relative-`.md` link rendering.
 - qutebrowser wrapper and link policy: implemented as `src/mediatron`
-  with a generated reading profile (chromeless, `F` hands external
-  links to xdg-open via a shipped userscript) and the castle-roots
-  allowlist in `~/.config/mediatron/config` (example committed; PR
-  #2, awaiting review). Real-display behavior unverified until the
-  resident's falsifier run.
+  (PR #2, awaiting merge) — generated chromeless reading profile and
+  a per-user `mediatron-external:` scheme handler, so any activation
+  of an external link opens the default browser; castle-roots
+  allowlist in `~/.config/mediatron/config` (example committed).
+- Falsifier: [stated 2026-09-06, the resident's verdict in session]
+  ran on the fixture and came back clean ("worked fine") — the
+  internal link stays in the window, the external link opens in the
+  default browser. The scheme-handoff mechanism replaced the
+  first-cut F-userscript design after the resident's earlier
+  windowed run showed external links opening in-window.
 - Outcome log: first data row appended with task 0001's completion
-  (PR #2).
+  (PR #2); falsifier verdict recorded there too.
