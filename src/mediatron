@@ -92,12 +92,16 @@ def _install_external_handler():
         with open(desktop, "w") as fh:
             fh.write(entry)
     mime_type = f"x-scheme-handler/{EXTERNAL_SCHEME}"
-    query = subprocess.run(
-        ["xdg-mime", "query", "default", mime_type],
-        capture_output=True, text=True)
-    if query.returncode != 0 or query.stdout.strip() != "mediatron-external.desktop":
-        subprocess.run(["xdg-mime", "default", "mediatron-external.desktop", mime_type],
-                       check=False)
+    try:
+        query = subprocess.run(
+            ["xdg-mime", "query", "default", mime_type],
+            capture_output=True, text=True)
+        if query.returncode != 0 or query.stdout.strip() != "mediatron-external.desktop":
+            subprocess.run(["xdg-mime", "default", "mediatron-external.desktop", mime_type],
+                           check=False)
+    except OSError as exc:
+        sys.stderr.write(f"mediatron: xdg-mime unavailable ({exc}); "
+                         "external links will not hand off to the default browser\n")
 
 
 def main(argv=None):

@@ -21,6 +21,8 @@ import os
 import re
 import sys
 
+EXTERNAL_SCHEME = "mediatron-external"
+
 CSS = """
   :root {
     --paper: #FAF9F6; --ink: #1C1F22; --muted: #5C636B;
@@ -118,7 +120,7 @@ def _tag_external(s, roots):
             href.startswith(r) for r in roots
         )
         if external:
-            href = "mediatron-external:" + href
+            href = EXTERNAL_SCHEME + ":" + href
         return f'<a href="{href}">'
     return re.sub(r'<a href="([^"]+)">', _one, s)
 
@@ -221,6 +223,8 @@ def _resolve_relative_md(html_out, out_path, visited, roots):
     src_html = html_out
     hrefs = set(re.findall(r'<a href="([^"]+\.md(?:#[^"]*)?)">', html_out))
     for href in sorted(hrefs):
+        if href.startswith(EXTERNAL_SCHEME + ":"):
+            continue
         frag = ""
         if "#" in href:
             href, frag = href.split("#", 1)
@@ -234,8 +238,11 @@ def _resolve_relative_md(html_out, out_path, visited, roots):
         visited.add(target)
         if not os.path.exists(target):
             continue
-        rendered = render(target, out_dir, roots, visited)
-        new_href = os.path.basename(rendered) + (f"#{frag}" if frag else "")
+        rel_html = os.path.join(os.path.dirname(href),
+                                os.path.splitext(os.path.basename(target))[0] + ".html")
+        out = os.path.join(out_dir, rel_html) if os.path.dirname(href) else None
+        render(target, out_dir, roots, visited, out_path=out)
+        new_href = rel_html + (f"#{frag}" if frag else "")
         src_html = re.sub(rf'<a href="{re.escape(href)}">', f'<a href="{new_href}">', src_html)
     return src_html
 
@@ -255,7 +262,7 @@ def render(src, out_dir=None, roots=(), visited=None, out_path=None):
                                 os.path.splitext(os.path.basename(src))[0] + ".html")
     out_path = os.path.abspath(out_path)
     body = _resolve_relative_md(body, out_path, visited, roots)
-    page = f"<title>{html.escape(title)}</title>\n<style>{CSS}</style>\n<main>\n{body}\n</main>\n"
+    page = "<!DOCTYPE html>\n" + f"<title>{html.escape(title)}</title>\n<style>{CSS}</style>\n<main>\n{body}\n</main>\n"
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as fh:
         fh.write(page)
