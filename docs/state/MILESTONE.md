@@ -25,6 +25,10 @@ where `j`/`k` scroll; one link to another castle document opens in
 the same window; one external link opens in the resident's default
 browser.
 
+Extended at elicitation 2026-09-06 by [m1-links] (link
+classification), [m1-provenance] (front-matter title and eyebrow),
+and [m1-seam] (the override boundary).
+
 ### Explicitly out [m1-out]
 
 [stated 2026-09-06] The warm always-waiting browser — anticipated
@@ -51,6 +55,45 @@ resident holds.
   the pre-intervention baseline this greenfield uniquely offers is
   forfeit for every measure missing its rows. [inferred from the
   founding direction; endorsed by the resident 2026-09-06]
+
+### Decided at elicitation, 2026-09-06 [m1-elicited]
+
+The resident's answers to the founding brief's open ambiguities
+([m1-elicit]); the [inferred] readings below were chosen among the
+readings written down beforehand, none were defaulted.
+
+- [m1-links] [stated 2026-09-06] Link classification for [m1-done]:
+  relative links and file:// links are internal and resolve against
+  the rendered file's location; additionally a configured allowlist
+  of URL prefixes names castle roots, and http(s) links matching a
+  listed prefix stay in the window. All other links leave it. Tag
+  link-classification cleared.
+- [m1-provenance] [stated 2026-09-06] The markdown file declares its
+  own title and eyebrow in a small front-matter block the renderer
+  parses and strips; no title/eyebrow arguments on the milestone-1
+  command line. Tag provenance-sourcing cleared.
+- [m1-seam] [inferred, tag override-seam carried] Milestone 1 ships
+  palette and type as replaceable tokens with a documented
+  attachment point; the override loading mechanism itself is later
+  work, not this milestone. Carried into task 0001 as written
+  uncertainty.
+- [m1-ambig-done] [inferred, tag completion-definition carried]
+  "Milestone 1 complete" reads as PRs-merged-plus-resident-run: the
+  closing status update reports merged PRs as receipts and the
+  resident's own falsifier run on the fixture as the open gate,
+  never "complete" as this project's assertion.
+- [m1-ambig-subagent] [stated 2026-09-06] Implementation is
+  dispatched through emcee with task briefs at `Model: cheap`,
+  which this machine's roster maps to
+  opencode/deepseek-v4-flash. Task 0001's founding `Model:
+  standard` is flipped to cheap with the reasoning rewritten, in the
+  same change. The sprint's cap passes this session's declared
+  budget, 25 USD. Tag subagent-reference cleared.
+- [m1-ambig-fixture] [inferred, carried] The fixture markdown lives
+  in an `examples/` directory riding the task 0001 change; its
+  internal link is relative, exercising [m1-links]'s file side.
+
+### Position [m1-now] — patched per PR
 
 ### Position [m1-now] — patched per PR
 
