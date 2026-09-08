@@ -1,1 +1,2 @@
 date	task	attempt_outcome	pr	model_tier	notes
+2026-09-06	0001-render-one-page-and-show-it	falsifier-verified (awaiting merge)	#2	deep (in-session)	three emcee dispatch attempts (cheap=deepseek-v4-flash via opencode, --budget 25) abandoned stuck/no-output 29+44 min; resident overrode to in-session implementation; resident's windowed falsifier verdict 2026-09-06 "worked fine"; external handoff reworked from F-userscript to mediatron-external: scheme after first run showed in-window open

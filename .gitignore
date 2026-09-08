@@ -1,0 +1,6 @@
+# Generated render output — mediatron writes .html next to its sources.
+examples/*.html
+result
+result-*
+__pycache__/
+*.pyc

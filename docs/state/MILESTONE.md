@@ -97,9 +97,21 @@ readings written down beforehand, none were defaulted.
 
 ### Position [m1-now] — patched per PR
 
-- Scaffolding: this founding commit.
-- Renderer: not ported (task 0001; the source system exists in the
-  founding session's tooling and lands with the task).
-- qutebrowser wrapper and link policy: not built (task 0001).
-- Outcome log: header row only; first data row lands with task
-  0001's completion.
+- Scaffolding: founding commit; elicitation PR #1 merged 2026-09-06
+  (records [m1-links], [m1-provenance], [m1-seam]; pin flake.lock).
+- Renderer: implemented as `src/mediatron_render.py` on task 0001's
+  branch (PR #2, awaiting merge) — the md2page.py port plus
+  front-matter title/eyebrow and relative-`.md` link rendering.
+- qutebrowser wrapper and link policy: implemented as `src/mediatron`
+  (PR #2, awaiting merge) — generated chromeless reading profile and
+  a per-user `mediatron-external:` scheme handler, so any activation
+  of an external link opens the default browser; castle-roots
+  allowlist in `~/.config/mediatron/config` (example committed).
+- Falsifier: [stated 2026-09-06, the resident's verdict in session]
+  ran on the fixture and came back clean ("worked fine") — the
+  internal link stays in the window, the external link opens in the
+  default browser. The scheme-handoff mechanism replaced the
+  first-cut F-userscript design after the resident's earlier
+  windowed run showed external links opening in-window.
+- Outcome log: first data row appended with task 0001's completion
+  (PR #2); falsifier verdict recorded there too.
